@@ -1,0 +1,49 @@
+.form {
+    max-width: 300px;
+    margin: 50px auto 0; /* Agrega un margen superior de 20px y centra el formulario horizontalmente */
+    display: flex;
+    flex-direction: column;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    background-color: var(--secondary-background-color);
+    padding: 30px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%; /* asegura que los campos se ajusten al ancho del contenedor */
+    padding: 12px; /* espacio interno del campo */
+    margin-bottom: 15px; /* espacio entre cada campo */
+    border: none; /* eliminar el borde predeterminado */
+    border-radius: 5px; /* esquinas redondeadas del campo */
+    box-sizing: border-box; /* incluye el padding en el ancho total del campo */
+    background-color: var(--font-color); /* color de fondo del campo */
+    color: #495057; /* color del texto del campo */
+    transition: background-color 0.3s ease; /* transición suave para el cambio de color de fondo */
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+    background-color: #e9ecef; /* cambia el color de fondo al enfocar el campo */
+    outline: none; /* elimina el resaltado predeterminado */
+}
+
+form input[type="submit"] {
+    width: 100%; /* asegura que el botón de envío se ajuste al ancho del contenedor */
+    padding: 10px; /* espacio interno del botón */
+    border: none; /* eliminar el borde del botón */
+    border-radius: 5px; /* esquinas redondeadas del botón */
+    background-color: var(--contrast1-color); /* color de fondo del botón */
+    color: white; /* color de texto del botón */
+    cursor: pointer; /* cursor de puntero al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* transición suave para el cambio de color de fondo */
+}
+
+form input[type="submit"]:hover {
+    background-color: #06788f; /* cambia el color de fondo al pasar el ratón sobre el botón */
+}
+
+.error-message {
+    color: var(--contrast2-color); /* Cambia el color del texto a rojo */
+    font-size: 14px; /* Opcional: ajusta el tamaño del texto según sea necesario */
+    /* Agrega cualquier otro estilo necesario */
+}

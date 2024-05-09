@@ -1,0 +1,14 @@
+.sort{
+    width: fit-content;
+    height: fit-content;
+
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    cursor: pointer;
+}
+.sort__icon{
+    width: 30px;
+    height: 30px;
+}

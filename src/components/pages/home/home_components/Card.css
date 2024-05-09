@@ -1,0 +1,78 @@
+/* card.css */
+
+.flexbox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta automáticamente el tamaño de las columnas */
+    grid-gap: 20px; /* Espacio entre las columnas */
+    justify-content: center; /* Centra los elementos de forma horizontal */
+}
+
+.flex-item {
+    position: relative; /* Establece la posición relativa para que los elementos absolutos sean relativos a este contenedor */
+    border-radius: 5px;
+    background-color: var(--secondary-background-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    height: 100%; /* Ocupa toda la altura del contenedor */
+    padding: 10px; /* Agrega un margen interno a todos los lados del flex-item */
+}
+
+.product-image {
+    width: 100%;
+    height: auto; /* La altura se ajustará automáticamente */
+    max-height: 150px; /* Altura máxima deseada para la imagen */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsionar su relación de aspecto */
+}
+
+.product-title {
+    font-weight: bold;
+    margin: 10px 0; /* Aumenta el margen superior e inferior para el título */
+    flex-grow: 1; /* Permite que el título ocupe el espacio restante verticalmente */
+}
+
+.product-price {
+    font-weight: bold;
+    font-size: 36px;
+    color: var(--contrast2-color);
+    margin: 5px 0; /* Mantiene el margen superior e inferior para el precio */
+}
+
+.product-description {
+    margin: 5px 0; /* Mantiene el margen superior e inferior para la descripción */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product-individual {
+    margin: 5px 0; /* Mantiene el margen superior e inferior para la descripción */
+}
+
+.add-to-cart-button {
+    background-color: var(--contrast2-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.add-to-cart-button:hover {
+    background-color: #c04f75;
+}
+
+.add-to-cart-button2 {
+    background-color: var(--contrast1-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.add-to-cart-button2:hover {
+    background-color: #06788f;
+}

@@ -1,0 +1,16 @@
+.filter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.filter--icon{
+    width: 30px;
+    height: 30px;
+}
+.filter--price{
+    display: flex;
+    flex-direction: column;
+
+    font-size: 15px;
+}
+  
