@@ -1,3 +1,5 @@
+import { createUserWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../../../services/firebaseService"
 import React, {useRef} from "react"
 import {useForm} from "react-hook-form"
 import "./Register.css"
@@ -21,9 +23,22 @@ export default function Register() {
   })
 
   const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data, null, 2))
-    reset()
-  })
+    const { email, password } = data;
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user.email;
+        console.log(user);
+      })
+      .catch((err) => {
+        const errorCode = err.code;
+        const errorMessage = err.message;
+        console.error(errorCode);
+        console.error(errorMessage);
+        alert('Usuario ya registrado.')
+      });
+  
+    reset();
+  });
 
   const password = useRef(null)
   password.current = watch("password")
@@ -143,7 +158,7 @@ export default function Register() {
           {errors.confirmPassword && <span className="error-message "> {errors.confirmPassword.message} </span>}
         </label>
 
-        <input type="submit" value="Send" />
+        <input type="submit" value="Send"/>
       </form>
     </>
   )

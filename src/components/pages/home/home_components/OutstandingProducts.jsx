@@ -1,8 +1,7 @@
 import React, {useContext} from "react"
+import {Link, Outlet, useLocation} from "react-router-dom"
 import {contextCreator} from "../../../context/ContextCreator"
-import {Link, Outlet} from "react-router-dom"
-import {useLocation} from "react-router-dom"
-import {SeeMore} from "./SeeMore.jsx"
+//import {SeeMore} from "./SeeMore.jsx"
 import "./OutstandingProducts.css"
 import "./Card.css"
 import "../../../../App.css"
@@ -37,10 +36,9 @@ export default function OutstandingProducts() {
                 </Link>
                 <p className="product-title">{data.title}</p>
                 <p className="product-price">${data.price}</p>
-                <SeeMore dataId={data.id} description={data.description} />
-
-
-
+                <p className="product-description">{data.description.slice(0, 100)}</p>
+                {/*<SeeMore dataId={data.id} description={data.description} />*/}
+                
                 {user ? (
                   <button className="add-to-cart-button" onClick={() => addToCart(data)}>
                     Add to Cart 🛒

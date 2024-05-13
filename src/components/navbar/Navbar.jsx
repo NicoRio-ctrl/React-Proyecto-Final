@@ -1,11 +1,11 @@
 import React from "react"
-import { NavLink, Outlet } from "react-router-dom"
+import { NavLink} from "react-router-dom"
 import CartResume from "../pages/cart/cartResume.jsx"
 import './Navbar.css'
 import { FaShoppingBag } from "react-icons/fa"
-import { ProductContextProvider } from "../context/ProductContextProvider.jsx"
 import { contextCreator } from "../context/ContextCreator.jsx"
 import { useContext } from "react"
+import Logout from '../pages/logout/Logout.jsx'
 
 export default function Navbar() {
   const {user} = useContext(contextCreator)
@@ -23,7 +23,7 @@ export default function Navbar() {
         !user ? (
           <>
             <NavLink className="navbar__item" to={"/register"}>
-            Register
+              Register
             </NavLink>
 
             <NavLink className="navbar__item" to={"/login"}>
@@ -31,16 +31,12 @@ export default function Navbar() {
             </NavLink>
           </>
         ) : (
-          <NavLink className="navbar__item" to={"/logout"}>
-              Logout {user}
+          <NavLink className="navbar__item" to={"/"}>
+              {user} <Logout/> 
           </NavLink>
         )
        }
        
-
-       
-        
-
         <NavLink className="navbar__item" to={"/product-list"}>
           Shop
         </NavLink>

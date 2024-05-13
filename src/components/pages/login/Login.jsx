@@ -1,8 +1,17 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {useForm} from "react-hook-form"
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../services/firebaseService"
 import "./Login.css"
+import { contextCreator } from "../../context/ContextCreator";
+import { useContext } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+
+  const {handleUser, handleErrorUser} = useContext(contextCreator);
+
   const {
     register,
     handleSubmit,
@@ -16,10 +25,30 @@ export default function Login() {
     },
   })
 
+  const navigate = useNavigate()
+
   const onSubmit = handleSubmit((data) => {
-    alert(JSON.stringify(data, null, 2))
-    reset()
-  })
+    
+    const { email, password } = data;
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user.email;
+        handleUser(user);
+        handleErrorUser(null);
+
+        navigate('/')
+      })
+      .catch((err) => {
+        const errorCode = err.code;
+        const errorMessage = err.message;
+        console.error(errorCode);
+        console.error(errorMessage);
+        handleErrorUser(err);
+        alert('Usuario y/o contraseña inválidos.')
+      });
+  
+    reset();
+  });
 
   return (
     <>
@@ -58,18 +87,8 @@ export default function Login() {
           {errors.password?.type === "required" && <span className="error-message "> {errors.password?.message}</span>}
         </label>
 
-        <input type="submit" value="Send" />
+        <input type="submit" value="Send"/>
       </form>
     </>
   )
 }
-
-// 1) Declarar las variables y funciones a utilizar de useForm - line 11~22 OK
-// 2) Registrar las variables con sus mensajes - line 31~39 & 46~58 OK
-// 3) expresar los mensajes de error - line 41~42 & 60~62 OK
-// 4) Usar la funcion 'handleSubmit' pending...
-// 5) implementar watch, reset y setvalue pending...
-// 6) REGEX pending...
-// 7) Data base pending...
-
-// Declaro las funciones que voy a utilizar del hook 'useForms'

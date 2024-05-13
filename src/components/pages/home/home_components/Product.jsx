@@ -31,7 +31,7 @@ export default function Product() {
             <p className="product-individual">Rate: {storeOurProduct.rating.rate}</p>
             <p className="product-individual">Count: {storeOurProduct.rating.count}</p>
             {user ? (
-                <button className="add-to-cart-button" onClick={() => addToCart(data)}>
+                <button className="add-to-cart-button" onClick={() => addToCart(storeOurProduct)}>
                   Add to Cart 🛒
                 </button>
               ) : (

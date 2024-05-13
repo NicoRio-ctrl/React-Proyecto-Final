@@ -1,8 +1,8 @@
 import {React, useState, useEffect} from "react"
-import {productService} from "../../services/productService"
+import {productService, getCartFromStorage} from "../../services/productService"
 import {contextCreator} from "./ContextCreator"
-
 import {auth} from '../../services/firebaseService'
+import { onAuthStateChanged } from "firebase/auth"
 
 export const ProductContextProvider = ({children}) => {
   // Variables de estado y Setters | useState
@@ -12,11 +12,12 @@ export const ProductContextProvider = ({children}) => {
   const [query, setQuery] = useState("")
   const [maxPrice, setmaxPrice] = useState(1000)
   const [sortedMaxToMin, setSortedMaxToMin] = useState(false)
-  const [cart, setCart] = useState([])
+  const [cart, setCart] = useState(getCartFromStorage());
   const [derivedCart, setDerivedCart] = useState([])
   const [seeMore, setSeeMore] = useState(null)
 
-  const [user, setUser] = useState("Pepote")
+  const [user, setUser] = useState(null)
+  const [errorUser, setErrorUser] = useState(null)
 
   // Funciones intermediarias handles
   const handleQuery = (searchTerm) => setQuery(searchTerm)
@@ -32,20 +33,31 @@ export const ProductContextProvider = ({children}) => {
     setSortedMaxToMin(!sortedMaxToMin)
   }
   const handleDerivedCart = (newDerivedCart) => setDerivedCart(newDerivedCart)
+  const handleCart = (cart) => setCart(cart);
   const handleSeeMore = (productId) => {
     setSeeMore((prevState) => (prevState === productId ? null : productId))
   }
-  // Funciones que manipulan el carrito
-  const addToCart = (prod) => setCart((previousValue) => [...previousValue, prod])
-  const removeFromCart = (id) => setCart(cart.filter((item) => item.id !== id)) //filter descarta todos los id's que sean distintos al que pasamos (un enfermito)
-  //const removeFromCart = (id) => cart.forEach((prod) => prod.find(prod.id === id) (hay que recorrer con un foreach, como un ser humnano normal)
-  // Funciones que manipulan el carrito
+  const handleUser = (user) => setUser(user); 
+  const handleErrorUser = (error) => setErrorUser(error)
 
+
+  // Funciones que manipulan el carrito
+  const addToCart = (prod) => {
+    setCart((previousValue) => [...previousValue, prod])
+    const newCart = [...cart, prod];
+    window.localStorage.setItem('cart', JSON.stringify(newCart));
+  }
+  const removeFromCart = (id) => {
+    const updatedCart = cart.filter((item) => item.id !== id)
+    setCart(updatedCart)
+    window.localStorage.setItem('cart', JSON.stringify(updatedCart))
+  } 
   const removeOneItemFromCart = (id) => {
     const indexToRemove = cart.findIndex((element) => element.id === id)
     if (indexToRemove !== -1) {
       cart.splice(indexToRemove, 1)
       setCart([...cart])
+      window.localStorage.setItem('cart', JSON.stringify(cart))
     }
 
     const updatedDerivedCart = derivedCart
@@ -58,6 +70,7 @@ export const ProductContextProvider = ({children}) => {
       .filter((item) => item.quantity > 0)
     setDerivedCart(updatedDerivedCart)
   }
+
 
   // Implementacion try catch | Async - Await para el fetching de datos (que esta en service)
   const fetchData = async () => {
@@ -78,6 +91,11 @@ export const ProductContextProvider = ({children}) => {
   // Aplico el useEffect para implementar las funciones asyncronas
   useEffect(() => {
     fetchData()
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user.email);
+      }
+    });
   }, [])
 
   return (
@@ -99,10 +117,13 @@ export const ProductContextProvider = ({children}) => {
           removeFromCart,
           derivedCart,
           handleDerivedCart,
+          handleCart,
           removeOneItemFromCart,
           seeMore,
           handleSeeMore,
-          user
+          user,
+          handleErrorUser,
+          handleUser
         }}
       >
         {children}

@@ -44,7 +44,8 @@ export default function ProductList() {
                     </Link>
                     <p className="product-title">{data.title}</p>
                     <p className="product-price">${data.price}</p>
-                    <SeeMore dataId={data.id} description={data.description} />
+                    <p className="product=description">{data.description.slice(0, 100)}</p>
+                    {/* <SeeMore dataId={data.id} description={data.description} /> */}
 
                     {user ? (                      
                       <button className="add-to-cart-button" onClick={() => addToCart(data)}>
