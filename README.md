@@ -19,3 +19,9 @@ Se utilizó:
 - Renders condicionales
 - Fetching de datos y uso de una API store pública (Fakestore.api)
 - Paquete de íconos 'React-icons'
+
+Dependencias:
+npm install react-router-dom
+npm install react-icons --save
+npm install firebase
+npm install react-hook-form
