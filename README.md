@@ -21,7 +21,7 @@ Se utilizó:
 - Paquete de íconos 'React-icons'
 
 Dependencias:
-npm install react-router-dom
-npm install react-icons --save
-npm install firebase
-npm install react-hook-form
+- npm install react-router-dom
+- npm install react-icons --save
+- npm install firebase
+- npm install react-hook-form
