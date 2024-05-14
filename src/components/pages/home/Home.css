@@ -2,38 +2,29 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
     color: var(--font-color);
-
     font-family: 'MiFuente', 'Comfortaa-Regular', sans-serif;
-
 }
-
 
 .grid-container{
     display: grid;
     min-height: 100dvh;
-
     grid-template-areas:
     "header" 
     "main"
     "footer";
-
     grid-template-rows: min-content 1fr min-content;
 }
-
 
 .header{
     grid-area: "header";
     background-color: var(--secondary-background-color);
 }
 
-
 .main{
     grid-area: "main";
     background-color: var(--main-background-color);
 }
-
 
 .footer{
     grid-area: "footer";

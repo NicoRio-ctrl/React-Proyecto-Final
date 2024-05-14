@@ -1,52 +1,50 @@
-/* card.css */
-
 .flexbox {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta automáticamente el tamaño de las columnas */
-    grid-gap: 20px; /* Espacio entre las columnas */
-    justify-content: center; /* Centra los elementos de forma horizontal */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 20px;
+    justify-content: center;
 }
 
 .flex-item {
-    position: relative; /* Establece la posición relativa para que los elementos absolutos sean relativos a este contenedor */
+    position: relative;
     border-radius: 5px;
     background-color: var(--secondary-background-color);
     text-align: center;
     display: flex;
-    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
-    height: 100%; /* Ocupa toda la altura del contenedor */
-    padding: 10px; /* Agrega un margen interno a todos los lados del flex-item */
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
 }
 
 .product-image {
     width: 100%;
-    height: auto; /* La altura se ajustará automáticamente */
-    max-height: 150px; /* Altura máxima deseada para la imagen */
-    object-fit: cover; /* Ajusta la imagen dentro del contenedor sin distorsionar su relación de aspecto */
+    height: auto;
+    max-height: 150px; 
+    object-fit: cover; 
 }
 
 .product-title {
     font-weight: bold;
-    margin: 10px 0; /* Aumenta el margen superior e inferior para el título */
-    flex-grow: 1; /* Permite que el título ocupe el espacio restante verticalmente */
+    margin: 10px 0; 
+    flex-grow: 1; 
 }
 
 .product-price {
     font-weight: bold;
     font-size: 36px;
     color: var(--contrast2-color);
-    margin: 5px 0; /* Mantiene el margen superior e inferior para el precio */
+    margin: 5px 0; 
 }
 
 .product-description {
-    margin: 5px 0; /* Mantiene el margen superior e inferior para la descripción */
+    margin: 5px 0; 
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .product-individual {
-    margin: 5px 0; /* Mantiene el margen superior e inferior para la descripción */
+    margin: 5px 0; 
 }
 
 .add-to-cart-button {

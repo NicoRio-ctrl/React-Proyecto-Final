@@ -1,6 +1,6 @@
-import { auth } from "../../../services/firebaseService"
 import { useContext } from "react";
 import { contextCreator } from "../../context/ContextCreator";
+import { auth } from "../../../services/firebaseService"
 import "../home/home_components/Card.css"
 
 export default function Signout() {

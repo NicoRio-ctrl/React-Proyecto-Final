@@ -1,7 +1,9 @@
+import React, { useRef } from "react"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../../services/firebaseService"
-import React, {useRef} from "react"
-import {useForm} from "react-hook-form"
+
 import "./Register.css"
 
 export default function Register() {
@@ -10,7 +12,6 @@ export default function Register() {
     handleSubmit,
     formState: {errors},
     watch,
-    setValue,
     reset,
   } = useForm({
     defaultValues: {
@@ -22,19 +23,19 @@ export default function Register() {
     },
   })
 
+  const navigate = useNavigate();
+
   const onSubmit = handleSubmit((data) => {
     const { email, password } = data;
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user.email;
-        console.log(user);
+        navigate('/')
       })
       .catch((err) => {
-        const errorCode = err.code;
         const errorMessage = err.message;
-        console.error(errorCode);
         console.error(errorMessage);
-        alert('Usuario ya registrado.')
+        alert('Account already exists.')
       });
   
     reset();
@@ -63,6 +64,11 @@ export default function Register() {
                 value: 3,
                 message: "First name must be at least three characters long.",
               },
+              pattern: {
+                value: /^[a-zA-Z]+(?:[\s'-][a-zA-Z]+)*$/,
+                message:
+                  "Invalid first name",
+              },
             })}
           />
           {errors.firstName?.type === "required" && (
@@ -71,6 +77,7 @@ export default function Register() {
           {errors.firstName?.type === "minLength" && (
             <span className="error-message "> {errors.firstName?.message}</span>
           )}
+          {errors.firstName?.type === "pattern" && <span className="error-message "> {errors.firstName?.message}</span>}
         </label>
 
         <label htmlFor="lastName">
@@ -88,10 +95,16 @@ export default function Register() {
                 value: 3,
                 message: "Last name must be at least three characters long.",
               },
+              pattern: {
+                value: /^[a-zA-Z]+(?:[\s'-][a-zA-Z]+)*$/,
+                message:
+                  "Invalid last name",
+              },
             })}
           />
           {errors.lastName?.type === "required" && <span className="error-message "> {errors.lastName?.message}</span>}
           {errors.lastName?.type === "minLength" && <span className="error-message "> {errors.lastName?.message}</span>}
+          {errors.lastName?.type === "pattern" && <span className="error-message "> {errors.lastName?.message}</span>}
         </label>
 
         <label htmlFor="email">

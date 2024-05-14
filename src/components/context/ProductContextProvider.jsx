@@ -1,8 +1,8 @@
-import {React, useState, useEffect} from "react"
-import {productService, getCartFromStorage} from "../../services/productService"
-import {contextCreator} from "./ContextCreator"
-import {auth} from '../../services/firebaseService'
+import { React, useState, useEffect } from "react"
 import { onAuthStateChanged } from "firebase/auth"
+import { productService, getCartFromStorage } from "../../services/productService"
+import { contextCreator } from "./ContextCreator"
+import { auth } from '../../services/firebaseService'
 
 export const ProductContextProvider = ({children}) => {
   // Variables de estado y Setters | useState
@@ -15,7 +15,6 @@ export const ProductContextProvider = ({children}) => {
   const [cart, setCart] = useState(getCartFromStorage());
   const [derivedCart, setDerivedCart] = useState([])
   const [seeMore, setSeeMore] = useState(null)
-
   const [user, setUser] = useState(null)
   const [errorUser, setErrorUser] = useState(null)
 
@@ -34,12 +33,9 @@ export const ProductContextProvider = ({children}) => {
   }
   const handleDerivedCart = (newDerivedCart) => setDerivedCart(newDerivedCart)
   const handleCart = (cart) => setCart(cart);
-  const handleSeeMore = (productId) => {
-    setSeeMore((prevState) => (prevState === productId ? null : productId))
-  }
+  const handleSeeMore = (productId) => setSeeMore((prevState) => (prevState === productId ? null : productId))
   const handleUser = (user) => setUser(user); 
   const handleErrorUser = (error) => setErrorUser(error)
-
 
   // Funciones que manipulan el carrito
   const addToCart = (prod) => {
@@ -71,14 +67,12 @@ export const ProductContextProvider = ({children}) => {
     setDerivedCart(updatedDerivedCart)
   }
 
-
   // Implementacion try catch | Async - Await para el fetching de datos (que esta en service)
   const fetchData = async () => {
     try {
       setErrorProducts(null)
       setIsLoading(true)
       const data = await productService("https://fakestoreapi.com/products")
-      //console.log("Soy del provider ->", data)
       setDataProducts(data)
     } catch (error) {
       console.error(error)
@@ -122,6 +116,7 @@ export const ProductContextProvider = ({children}) => {
           seeMore,
           handleSeeMore,
           user,
+          errorUser,
           handleErrorUser,
           handleUser
         }}

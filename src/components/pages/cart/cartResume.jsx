@@ -1,19 +1,17 @@
-import {useContext} from "react"
-import {contextCreator} from "../../context/ContextCreator"
-import {Link} from "react-router-dom"
-import {getTotalCartPrice} from "../../../utilities/getTotalCartPrice.js"
-import {getDerivedCart} from "../../../utilities/getDerivedCart.js"
-import {useEffect} from "react"
-import "../../navbar/Navbar.css"
+import { useContext, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { contextCreator } from "../../context/ContextCreator"
+import { getTotalCartPrice } from "../../../utilities/getTotalCartPrice.js"
+import { getDerivedCart } from "../../../utilities/getDerivedCart.js"
 import { FaCartShopping } from "react-icons/fa6";
+import "../../navbar/Navbar.css"
 
 export default function CartResume() {
   const {derivedCart, cart, handleDerivedCart} = useContext(contextCreator)
-  // useEffect actualiza derivedCart cuando cambie el carrito
   useEffect(() => {
     const newDerivedCart = getDerivedCart(cart)
     handleDerivedCart(newDerivedCart)
-  }, [cart]) // Solo se ejecuta cuando cambia el carrito
+  }, [cart])
 
   function totalAmountDerivedCart(derivedCart) {
     let totalAmount = 0

@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import { NavLink} from "react-router-dom"
-import CartResume from "../pages/cart/cartResume.jsx"
-import './Navbar.css'
 import { FaShoppingBag } from "react-icons/fa"
 import { contextCreator } from "../context/ContextCreator.jsx"
-import { useContext } from "react"
+import CartResume from "../pages/cart/cartResume.jsx"
 import Logout from '../pages/logout/Logout.jsx'
+import './Navbar.css'
 
 export default function Navbar() {
   const {user} = useContext(contextCreator)
@@ -18,7 +17,6 @@ export default function Navbar() {
           <FaShoppingBag className="item--icon"/><h1 className="item--title">Fake Store</h1>
         </NavLink>
         
-       
        {
         !user ? (
           <>

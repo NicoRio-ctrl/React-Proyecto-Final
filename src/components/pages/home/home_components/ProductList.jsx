@@ -1,12 +1,12 @@
-import {useContext} from "react"
-import {Outlet} from "react-router-dom"
-import {contextCreator} from "../../../context/ContextCreator.jsx"
-import {Link} from "react-router-dom"
-import {useLocation} from "react-router-dom"
-import {SeeMore} from "./SeeMore.jsx"
+import { useContext } from "react"
+import { Link, useLocation, Outlet} from "react-router-dom"
+import { contextCreator } from "../../../context/ContextCreator.jsx"
+import { FaCartShopping } from "react-icons/fa6";
 import Search from "./Search.jsx"
 import FilterMaxPrice from "./FilterMaxPrice.jsx"
 import Sort from "./Sort.jsx"
+
+//import {SeeMore} from "./SeeMore.jsx"
 import "./ProductList.css"
 import "./Card.css"
 
@@ -46,16 +46,14 @@ export default function ProductList() {
                     <p className="product-price">${data.price}</p>
                     <p className="product=description">{data.description.slice(0, 100)}</p>
                     {/* <SeeMore dataId={data.id} description={data.description} /> */}
-
                     {user ? (                      
                       <button className="add-to-cart-button" onClick={() => addToCart(data)}>
-                        Add to Cart 🛒
+                        Add to Cart <FaCartShopping />
                       </button>
                       ) : (
                         <p className="product-individual">Login for Adding to Cart</p>
                       )
                     }
-
                   </article>
                 ))}
             </section>

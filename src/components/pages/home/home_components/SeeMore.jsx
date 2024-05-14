@@ -1,5 +1,6 @@
-import React, {useContext} from "react"
-import {contextCreator} from "../../../context/ContextCreator"
+/*Componente no utilizado debido a dificultades en la implementación del CSS. Sin embargo, es funcional*/
+import React, { useContext } from "react"
+import { contextCreator } from "../../../context/ContextCreator"
 import "./Card.css"
 
 export const SeeMore = ({dataId, description}) => {

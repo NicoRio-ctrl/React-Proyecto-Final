@@ -1,12 +1,12 @@
 import { useContext } from "react"
 import { contextCreator } from "../../../context/ContextCreator"
+import { IoIosSearch } from "react-icons/io";
 import './Search.css'
 import '../../../../App.css'
-import { IoIosSearch } from "react-icons/io";
 
 export default function Search(){
 
-    const {query, handleQuery} = useContext(contextCreator)
+    const {handleQuery} = useContext(contextCreator)
     return(
         <>
             <form className="search-form">

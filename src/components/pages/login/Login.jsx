@@ -1,12 +1,10 @@
-import React, { useEffect } from "react"
-import {useForm} from "react-hook-form"
+import React, { useContext } from "react"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom";
+import { contextCreator } from "../../context/ContextCreator";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../../services/firebaseService"
 import "./Login.css"
-import { contextCreator } from "../../context/ContextCreator";
-import { useContext } from "react";
-
-import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 
@@ -16,7 +14,6 @@ export default function Login() {
     register,
     handleSubmit,
     formState: {errors},
-    setValue,
     reset,
   } = useForm({
     defaultValues: {
@@ -35,7 +32,6 @@ export default function Login() {
         const user = userCredential.user.email;
         handleUser(user);
         handleErrorUser(null);
-
         navigate('/')
       })
       .catch((err) => {
@@ -44,7 +40,7 @@ export default function Login() {
         console.error(errorCode);
         console.error(errorMessage);
         handleErrorUser(err);
-        alert('Usuario y/o contraseña inválidos.')
+        alert('Invalid user or password.');
       });
   
     reset();

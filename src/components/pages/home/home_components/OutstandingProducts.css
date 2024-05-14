@@ -1,21 +1,18 @@
-/* outstanding.css */
-
 h2 {
     text-align: center;
 }
 
 .content-container {
     display: grid;
-    grid-template-rows: min-content auto; /* La primera fila para el título h2, la segunda para el resto */
-    gap: 20px; /* Espacio entre las filas */
-    justify-items: center; /* Centra los elementos horizontalmente */
+    grid-template-rows: min-content auto; 
+    gap: 20px; 
+    justify-items: center;
     width: 100%;
-
     padding: 25px 0;
 }
 
 .flexbox {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajusta automáticamente el tamaño de las columnas */
-    grid-gap: 20px; /* Espacio entre las columnas */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    grid-gap: 20px; 
 }
